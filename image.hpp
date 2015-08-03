@@ -1,12 +1,16 @@
 #include <stdio.h>
 #include <math.h>
-
+#include <string>
 class Image
 {
 	private:
 		int width,height,channels;
 		unsigned char* data;
+		string colorspace;
 	public:
+		Image(){
+			data=NULL;
+		}
 		Image(int w,int h,int c){
 			data=new unsigned char[w*h*c];
 		}
@@ -24,6 +28,7 @@ class Image
 					}
 				}
 				fclose(readPtr);
+				colorspace="YUV";
 				return true;
 			}
 			else{
@@ -42,4 +47,36 @@ class Image
 		int getChannels(){
 			return channels;
 		}
-}
+		unsigned char* getData(){
+			return data;
+		}
+		string getColorspace(){
+			return colorspace;
+		}
+		void setData(unsigned char* d){
+			data=d;
+		}
+		void setWidth(int w){
+			width=w;
+		}
+		void setHeight(int h){
+			height=h;
+		}
+		void setChannels(int c){
+			channels=c;
+		}
+		void setColorSpace(string color){
+			colorspace=color;
+		}
+		void setImageInfo(int w,int h,int c){
+			width=w;
+			height=h;
+			channels=c;
+		}
+		void setImageInfo(int w,int h,int c,string color){
+			width=w;
+			height=h;
+			channels=c;
+			colorspace=color;
+		}
+};
